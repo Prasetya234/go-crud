@@ -43,7 +43,11 @@ func Create(c *gin.Context) {
 		return
 	}
 
-	models.DB.Create(&student)
+	result := models.DB.Create(&student)
+
+	if result.Error != nil {
+		responseHelper.BadRequest(c, result.Error.Error())
+	}
 	responseHelper.Ok(c, student)
 }
 

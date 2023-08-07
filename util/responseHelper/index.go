@@ -36,3 +36,11 @@ func BadRequest(c *gin.Context, res any) {
 		"error":   res,
 	})
 }
+
+func Unauthorized(c *gin.Context) {
+	c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+		"status":  "401",
+		"message": "UNAUTHORIZED",
+		"error":   "Unauthorized",
+	})
+}
